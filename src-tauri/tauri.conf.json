@@ -1,6 +1,6 @@
 {
   "package": {
-    "productName": "halocom-digital",
+    "productName": "api-notifications",
     "version": "0.1.0"
   },
   "build": {
@@ -54,7 +54,7 @@
     },
     "windows": [
       {
-        "title": "Halocom - Internal Digital",
+        "title": "API Notifications",
         "width": 800,
         "height": 600,
         "resizable": true,

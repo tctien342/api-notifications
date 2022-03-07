@@ -1,5 +1,5 @@
 {
-	"name": "halocom-digital",
+	"name": "api-notifications",
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
@@ -54,6 +54,6 @@
 	},
 	"lint-staged": {
 		"*.{js,jsx,ts,tsx}": "eslint --fix",
-		"*.rs": "cargo fmt --manifest-path ./src-tauri/Cargo.toml  --all -- --check"
+		"*.rs": "cargo fmt -q --manifest-path ./src-tauri/Cargo.toml --all --"
 	}
 }

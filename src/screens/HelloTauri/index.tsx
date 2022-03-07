@@ -3,8 +3,16 @@ import './index.scss';
 import logo from '@assets/logo.svg';
 import tauriCircles from '@assets/tauri.svg';
 import tauriWord from '@assets/wordmark.svg';
+import { invoke } from '@tauri-apps/api/tauri';
 
 function App() {
+	const makeNotification = () => {
+		void invoke('send_notification', {
+			title: 'Tauri',
+			body: 'Hello, world!',
+		});
+	};
+
 	return (
 		<div className="App">
 			<header className="App-header">
@@ -27,9 +35,7 @@ function App() {
 					rel="noopener noreferrer">
 					Learn React
 				</a>
-				<p>
-					Edit <code>src/App.tsx</code> and save to reload.
-				</p>
+				<button onClick={makeNotification}>Try notification</button>
 			</header>
 		</div>
 	);
