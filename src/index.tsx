@@ -1,14 +1,14 @@
 import './index.scss';
 
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import { AppRouter } from 'router';
 
 import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
+render(
   <React.StrictMode>
     <RecoilRoot>
       <BrowserRouter>

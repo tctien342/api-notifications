@@ -3,7 +3,7 @@
     windows_subsystem = "windows"
 )]
 
-use cocoa::appkit::{NSWindow, NSWindowStyleMask};
+use cocoa::appkit::{NSWindow, NSWindowButton, NSWindowStyleMask};
 use tauri::api::notification::Notification;
 use tauri::generate_context;
 use tauri::{Manager, Menu, MenuItem, Runtime, Submenu, Window};
