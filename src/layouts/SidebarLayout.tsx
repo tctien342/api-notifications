@@ -8,16 +8,14 @@ export const SidebarLayout: IComponent = () => {
   return (
     <div className="w-full h-full flex flex-row">
       <div className="w-80 h-full p-1 px-2">
-        <div
-          data-tauri-drag-region
-          className="w-full h-8 flex justify-end items-start active:cursor-grab"></div>
+        <div data-tauri-drag-region className="w-full h-8 flex justify-end items-start"></div>
         <h5 className="text-black dark:text-white font-bold text-sm">SIDEBAR</h5>
-        <div className="p-2 flex flex-col justify-start items-start">
+        <div className="p-2 flex flex-col justify-start items-start dark:text-white">
           <span
             onClick={() => navigator('/')}
             className={cx(
               {
-                'text-blue-600': location.pathname === '/',
+                'text-blue-600 dark:text-blue-300': location.pathname === '/',
               },
               'transition-all cursor-pointer hover:opacity-90 active:scale-90'
             )}>
@@ -35,7 +33,7 @@ export const SidebarLayout: IComponent = () => {
           </span>
         </div>
       </div>
-      <div className="w-full h-full bg-zinc-800">
+      <div className="w-full h-full bg-white dark:bg-zinc-800">
         <Outlet />
       </div>
     </div>

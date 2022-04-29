@@ -8,7 +8,7 @@ import { CallSendNotification } from '@utils/rust';
 function App() {
   return (
     <div className="w-full h-full flex flex-row">
-      <header className="flex h-full w-full flex-col p-4 justify-center items-center">
+      <header className="flex h-full w-full flex-col p-4 justify-center items-center dark:text-black bg-zinc-800">
         <div className="inline-logo">
           <img src={tauriCircles} className="App-logo rotate" alt="logo" />
           <img src={tauriWord} className="App-logo smaller" alt="logo" />
