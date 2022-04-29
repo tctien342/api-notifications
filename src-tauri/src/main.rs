@@ -3,10 +3,45 @@
     windows_subsystem = "windows"
 )]
 
+use cocoa::appkit::{NSWindow, NSWindowStyleMask};
 use tauri::api::notification::Notification;
 use tauri::generate_context;
-use tauri::{Manager, Menu, MenuItem, Submenu, Window};
-use window_vibrancy::{apply_blur, apply_vibrancy, NSVisualEffectMaterial};
+use tauri::{Manager, Menu, MenuItem, Runtime, Submenu, Window};
+use window_vibrancy::{apply_vibrancy, NSVisualEffectMaterial};
+
+pub trait WindowExt {
+    #[cfg(target_os = "macos")]
+    fn set_transparent_titlebar(&self, transparent: bool);
+}
+
+impl<R: Runtime> WindowExt for Window<R> {
+    #[cfg(target_os = "macos")]
+    fn set_transparent_titlebar(&self, transparent: bool) {
+        use cocoa::appkit::NSWindowTitleVisibility;
+
+        unsafe {
+            let id = self.ns_window().unwrap() as cocoa::base::id;
+
+            let mut style_mask = id.styleMask();
+            style_mask.set(
+                NSWindowStyleMask::NSFullSizeContentViewWindowMask,
+                transparent,
+            );
+            id.setStyleMask_(style_mask);
+
+            id.setTitleVisibility_(if transparent {
+                NSWindowTitleVisibility::NSWindowTitleHidden
+            } else {
+                NSWindowTitleVisibility::NSWindowTitleVisible
+            });
+            id.setTitlebarAppearsTransparent_(if transparent {
+                cocoa::base::YES
+            } else {
+                cocoa::base::NO
+            });
+        }
+    }
+}
 
 #[tauri::command]
 #[allow(unused_must_use)]
@@ -34,6 +69,9 @@ fn window_effect(window: Window) {
     #[cfg(target_os = "windows")]
     apply_blur(&window, Some((18, 18, 18, 125)))
         .expect("Unsupported platform! 'apply_blur' is only supported on Windows");
+
+    // Better macos titlebar
+    window.set_transparent_titlebar(true);
 }
 
 fn main() {

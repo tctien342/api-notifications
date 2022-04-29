@@ -1,3 +1,4 @@
+import { CallDragging } from '@utils/rust';
 import { cx } from '@utils/tools';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
@@ -6,7 +7,10 @@ export const SidebarLayout: IComponent = () => {
   const navigator = useNavigate();
   return (
     <div className="w-full h-full flex flex-row">
-      <div className="w-80 h-full p-2">
+      <div className="w-80 h-full p-1 px-2">
+        <div
+          data-tauri-drag-region
+          className="w-full h-8 flex justify-end items-start active:cursor-grab"></div>
         <h5 className="text-black dark:text-white font-bold text-sm">SIDEBAR</h5>
         <div className="p-2 flex flex-col justify-start items-start">
           <span
