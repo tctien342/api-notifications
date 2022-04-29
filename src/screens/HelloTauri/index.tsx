@@ -11,8 +11,11 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className="w-full h-full flex flex-row">
+      <div className="w-80 h-full p-2">
+        <h5 className="text-white font-bold text-sm">SIDEBAR</h5>
+      </div>
+      <header className="flex bg-zinc-800 h-full w-full flex-col p-4 justify-center items-center">
         <div className="inline-logo">
           <img src={tauriCircles} className="App-logo rotate" alt="logo" />
           <img src={tauriWord} className="App-logo smaller" alt="logo" />
@@ -32,7 +35,9 @@ function App() {
           rel="noopener noreferrer">
           Learn React
         </a>
-        <button onClick={makeNotification}>Try notification</button>
+        <button onClick={makeNotification} className="text-white font-bold text-xl">
+          Try notification
+        </button>
       </header>
     </div>
   );
