@@ -1,16 +1,19 @@
 import './index.scss';
 
-import App from '@screens/HelloTauri';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
+import { AppRouter } from 'router';
 
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
     <RecoilRoot>
-      <App />
+      <BrowserRouter>
+        <AppRouter />
+      </BrowserRouter>
     </RecoilRoot>
   </React.StrictMode>,
   document.getElementById('root')
