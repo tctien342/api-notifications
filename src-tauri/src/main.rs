@@ -17,16 +17,20 @@ pub trait WindowExt {
 impl<R: Runtime> WindowExt for Window<R> {
     #[cfg(target_os = "macos")]
     fn set_transparent_titlebar(&self, transparent: bool) {
-        use cocoa::appkit::NSWindowTitleVisibility;
+        use cocoa::appkit::{NSEvent, NSStatusItem, NSWindowTitleVisibility};
 
         unsafe {
             let id = self.ns_window().unwrap() as cocoa::base::id;
 
             let mut style_mask = id.styleMask();
+
+            id.standardWindowButton_(NSWindowButton::NSWindowCloseButton);
+
             style_mask.set(
                 NSWindowStyleMask::NSFullSizeContentViewWindowMask,
                 transparent,
             );
+
             id.setStyleMask_(style_mask);
 
             id.setTitleVisibility_(if transparent {
